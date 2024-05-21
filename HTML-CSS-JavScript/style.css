@@ -1,0 +1,58 @@
+.text-centering {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#ordered-list {
+    background-color: blueviolet;
+    color: crimson;
+
+    & li {
+        margin: 2rem;
+        padding: 2%;
+
+        @media (max-width: 500px) {
+            margin: 0;
+            padding: 0;
+        }
+        @media (min-width: 550px) {
+            margin: 1%;
+            padding: 1%;
+        }
+    }
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.image-upside-down {
+    /* transform: rotate(180deg);
+    transform: matrix(0.4, 0, 0.5, 1.2, 60, 10); */
+    animation: spin-circle 1s infinite;
+}
+
+@keyframes img-spin {
+    from {
+        transform: matrix(0,0,0,0,0);
+    }
+    to {
+        transform: matrix(0.4, 0, 0.5, 1.2, 60, 10);
+    }
+}
+
+@keyframes spin-circle {
+    0% {
+     transform: matrix(-0.4, 0, -0.5, -1.2, -60, -10);   
+    }
+    50% {
+        transform: matrix(0,0,0,0,0);
+    }
+    100% {
+        transform: matrix(0.4, 0, 0.5, 1.2, 60, 10);
+    }
+    
+}
