@@ -59,3 +59,16 @@ const handleSubmit = () => {
     }))
     return false
 }
+
+const truth1 = document.getElementById("two-truth-and-one-lie1")
+const truth2 = document.getElementById("two-truth-and-one-lie2")
+const lie = document.getElementById("two-truth-and-one-lie3")
+lie.addEventListener("click", function() {
+    lie.innerHTML = "Yes, this is the lie!"
+})
+truth1.addEventListener("click", function() {
+    truth1.innerHTML = "No, this is the Truth"
+})
+truth2.addEventListener("click", function() {
+    truth2.innerHTML = "No, this is the Truth"
+})
