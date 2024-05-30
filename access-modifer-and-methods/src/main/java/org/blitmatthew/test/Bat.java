@@ -1,6 +1,9 @@
 package org.blitmatthew.test;
 
-public class Bat extends Animal{
+import java.io.Serializable;
+import java.util.List;
+
+public class Bat extends Animal implements Serializable, Cloneable {
     String color;
 
     public Bat() {

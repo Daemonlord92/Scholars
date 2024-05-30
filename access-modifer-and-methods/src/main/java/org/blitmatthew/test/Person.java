@@ -53,4 +53,15 @@ public class Person {
     public int getHeight() {
         return height;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", dob=" + dob +
+                ", eyeColor='" + eyeColor + '\'' +
+                ", height=" + height +
+                '}';
+    }
 }

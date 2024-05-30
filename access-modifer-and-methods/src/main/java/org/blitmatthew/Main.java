@@ -1,9 +1,6 @@
 package org.blitmatthew;
 
-import org.blitmatthew.test.Account;
-import org.blitmatthew.test.Animal;
-import org.blitmatthew.test.Bat;
-import org.blitmatthew.test.Person;
+import org.blitmatthew.test.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -46,5 +43,46 @@ public class Main {
         System.out.println(person.getDob().toLocaleString());
 
         painList.add("First");
+        System.out.println(person.toString());
+
+        Bicycle bike1 = new BMXBike();
+        Bicycle bike2 = new MountainBike();
+        Bicycle bike3 = new Bicycle() {
+            @Override
+            public void changeCadence(int newValue) {
+
+            }
+
+            @Override
+            public void changeGear(int newValue) {
+
+            }
+
+            @Override
+            public void speedUp(int newValue) {
+
+            }
+
+            @Override
+            public void applyBrakes(int decrement) {
+
+            }
+        };
+
+        Plant plant = new Plant() {
+            @Override
+            public void grow() {
+
+            }
+
+            @Override
+            public void die() {
+
+            }
+        };
+
+        Plant aloeVera = new AloeVera("Aloe Vera", "Aloe", 25.00);
+
+        System.out.println(aloeVera.getName());
     }
 }
