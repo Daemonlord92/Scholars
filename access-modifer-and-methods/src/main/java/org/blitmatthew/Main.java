@@ -84,5 +84,21 @@ public class Main {
         Plant aloeVera = new AloeVera("Aloe Vera", "Aloe", 25.00);
 
         System.out.println(aloeVera.getName());
+
+        String hello = "Hello";
+
+        String hi = "World";
+
+        //hello = hello + hi;
+
+        System.out.println(hello.hashCode());
+        System.out.println(hi.hashCode());
+        StringBuilder sb = new StringBuilder(hello);
+        StringBuffer buffer = new StringBuffer();
+
+
+        sb.append(", ").append(hi);
+        System.out.println(sb.toString().hashCode());
+
     }
 }
