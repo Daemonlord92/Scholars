@@ -3,10 +3,12 @@ package org.blitmatthew;
 import org.blitmatthew.counter.CounterRunnable;
 import org.blitmatthew.thread.Counter;
 import org.blitmatthew.thread.CounterThread;
+import org.blitmatthew.thread.FormCallable;
 import org.blitmatthew.thread.ResourceMiner;
 import org.blitmatthew.vehicles.Car;
 
 import java.util.Scanner;
+import java.util.concurrent.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -94,21 +96,56 @@ public class Main {
 //            }
 //        }
 
-        Counter counter = new Counter();
+//        Counter counter = new Counter();
+//
+//        Thread thread = new CounterThread(counter);
+//        Thread thread1 = new CounterThread(counter);
+//
+//        thread.start();
+//        thread1.start();
+//
+//        try {
+//            thread.join();
+//            thread1.join();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//
+//        System.out.println("Final Count: " + counter.getCount());
 
-        Thread thread = new CounterThread(counter);
-        Thread thread1 = new CounterThread(counter);
+//        ExecutorService executorService = Executors.newFixedThreadPool(3);
+//        Future<Integer> future = executorService.submit(new FormCallable());
+//
+//        try{
+//            System.out.println("Results: " + future.get());
+//        } catch (ExecutionException e) {
+//            throw new RuntimeException(e);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        } finally {
+//            executorService.shutdown();
+//        }
 
-        thread.start();
-        thread1.start();
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+            int sum = 0;
+            for (int i = 0; i < 10; i++){
+                sum += i;
+                try {
+                    Thread.sleep(1000);
+
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return sum;
+        });
 
         try {
-            thread.join();
-            thread1.join();
+            System.out.println("Results: " + future.get());
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-
-        System.out.println("Final Count: " + counter.getCount());
     }
 }
