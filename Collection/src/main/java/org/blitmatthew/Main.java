@@ -107,11 +107,11 @@ public class Main {
         //READ
         //UPDATE
         //DELETE
-        List<String> troubleMakers = new ArrayList<>();
-        troubleMakers.add("Thomas");
-        System.out.println(troubleMakers);
-        troubleMakers.addAll(List.of("Omer", "Charles", "Alfonso"));
-        System.out.println(troubleMakers);
+//        List<String> troubleMakers = new ArrayList<>();
+//        troubleMakers.add("Thomas");
+//        System.out.println(troubleMakers);
+//        troubleMakers.addAll(List.of("Omer", "Charles", "Alfonso"));
+//        System.out.println(troubleMakers);
 //        troubleMakers.add(3, "Nick");
 //        System.out.println(troubleMakers);
 //        troubleMakers.remove(4);
@@ -161,21 +161,26 @@ public class Main {
 //            rand[i] = new Random().nextInt();
 //        }
 //        System.out.println(Arrays.toString(rand));
-//        List<Integer> intList = new ArrayList<>();
+//        List intList = new ArrayList<>();
+//        intList.add(3);
+//        intList.add(5);
+//        intList.add(9);
+//        intList.add("Jake");
+//        System.out.println(intList.get(0));
         // ArrayList  || Arrays
         // References Type|| Primative and References
         // Dynamic Sized || Fixed
         // Has Operations Methods|| No Operation Methods
         // Uses Generics || No Generic Use
-        List<String> games = new LinkedList<>();
-
-        games.add("Doom The Dark Ages");
-        games.add("Palworld");
-        games.add("Age Of Empires 4");
-        games.add("Call of Duty");
-
-        System.out.println(games);
-        System.out.println(games.get(1));
+//        List<String> games = new LinkedList<>();
+//
+//        games.add("Doom The Dark Ages");
+//        games.add("Palworld");
+//        games.add("Age Of Empires 4");
+//        games.add("Call of Duty");
+//
+//        System.out.println(games);
+//        System.out.println(games.get(1));
 
         // ["Doom"]-["Palworld"]-["Age"]-["CoD"]
 
@@ -198,5 +203,80 @@ public class Main {
 //            System.out.println(root.getValue());
 //            System.out.println();
 //        }
+
+        /*Stack<Boolean> booleanStack = new Stack<>();
+        booleanStack.push(false);
+        booleanStack.push(true);
+        booleanStack.push(false);
+        booleanStack.push(false);
+        booleanStack.push(true);
+        System.out.println(booleanStack);
+        while (!booleanStack.isEmpty()) {
+            if(booleanStack.peek()) {
+                System.out.println("Charles is smacking Omer");
+            } else {
+                System.out.println("Alfonso is being messed with");
+            }
+            booleanStack.pop();
+        }*/
+
+//        Stack<String> exercises = new Stack<>();
+//
+//        exercises.push("Triceps Push down 100Lbs");
+//        exercises.push("Bench Press 100Lbs");
+//        exercises.push("Leg Press 260Lbs");
+//        exercises.push("Bicep Curls 50Lbs");
+//        exercises.push("Lat Pull Down 100Lbs");
+//
+//        System.out.println(exercises);
+//        int position = exercises.search("Lat Pull Down 100Lbs");
+//        System.out.println(position);
+//        exercises.remove(4);
+//        exercises.pop();
+//        System.out.println(exercises);
+//
+//        position = exercises.search("Bench Press 100Lbs");
+//        System.out.println("Position of Exercise: " + position);
+//        position = exercises.search("Leg Press 260Lbs");
+//        System.out.println("Position of Exercise: " + position);
+//        position = exercises.search("Bicep Curls 50Lbs");
+//        System.out.println(position);
+//
+//        System.out.println(exercises.empty());
+//        exercises.clear();
+
+        Set<String> uniqueNames = new HashSet<>();
+        uniqueNames.add("Sam");
+        uniqueNames.add("Bhavani");
+        uniqueNames.add("Jehu");
+        uniqueNames.add("Thomas");
+        System.out.println(uniqueNames);
+        uniqueNames.add("Sam");
+        uniqueNames.add("Thomas");
+        System.out.println(uniqueNames);
+
+        Set<String> names = new HashSet<>();
+
+        names.add("Sam");
+        names.add("Nick");
+        names.add("Thomas");
+        names.add("Omer");
+
+        names.addAll(uniqueNames);
+        System.out.println(names);
+
+        Set<String> common = new HashSet<>(uniqueNames);
+        common.retainAll(names);
+        System.out.println(common);
+
+        Set<String> difference = new HashSet<>(uniqueNames);
+        difference.removeAll(names);
+        System.out.println(difference);
+
+        Set<String> sortedSet = new TreeSet<>(uniqueNames);
+        System.out.println(sortedSet);
+
+        Set<String> linkedHashSet = new LinkedHashSet<>();
+
     }
 }
