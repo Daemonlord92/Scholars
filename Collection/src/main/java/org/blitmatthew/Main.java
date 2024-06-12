@@ -1,5 +1,7 @@
 package org.blitmatthew;
 
+import org.blitmatthew.classes.Car;
+import org.blitmatthew.classes.Computer;
 import org.blitmatthew.linkedlist.LList;
 
 import java.util.*;
@@ -245,38 +247,129 @@ public class Main {
 //        System.out.println(exercises.empty());
 //        exercises.clear();
 
-        Set<String> uniqueNames = new HashSet<>();
-        uniqueNames.add("Sam");
-        uniqueNames.add("Bhavani");
-        uniqueNames.add("Jehu");
-        uniqueNames.add("Thomas");
-        System.out.println(uniqueNames);
-        uniqueNames.add("Sam");
-        uniqueNames.add("Thomas");
-        System.out.println(uniqueNames);
+//        Set<String> uniqueNames = new HashSet<>();
+//        uniqueNames.add("Sam");
+//        uniqueNames.add("Bhavani");
+//        uniqueNames.add("Jehu");
+//        uniqueNames.add("Thomas");
+//        System.out.println(uniqueNames);
+//        uniqueNames.add("Sam");
+//        uniqueNames.add("Thomas");
+//        System.out.println(uniqueNames);
+//
+//        Set<String> names = new HashSet<>();
+//
+//        names.add("Sam");
+//        names.add("Nick");
+//        names.add("Thomas");
+//        names.add("Omer");
+//
+//        names.addAll(uniqueNames);
+//        System.out.println(names);
+//
+//        Set<String> common = new HashSet<>(uniqueNames);
+//        common.retainAll(names);
+//        System.out.println(common);
+//
+//        Set<String> difference = new HashSet<>(uniqueNames);
+//        difference.removeAll(names);
+//        System.out.println(difference);
+//
+//        Set<String> sortedSet = new TreeSet<>(uniqueNames);
+//        System.out.println(sortedSet);
+//
+//        Set<String> linkedHashSet = new LinkedHashSet<>();
 
-        Set<String> names = new HashSet<>();
+//        Queue<String> peopleInLine = new LinkedList<>();
+//
+//        try {
+//            peopleInLine.remove();
+//        } catch (NoSuchElementException e) {
+//            e.printStackTrace();
+//        }
+//
+//        peopleInLine.add("Alfonso");
+//        peopleInLine.add("Jehu");
+//        peopleInLine.add("Sayeed");
+//
+//        System.out.println(peopleInLine);
 
-        names.add("Sam");
-        names.add("Nick");
-        names.add("Thomas");
-        names.add("Omer");
+//        peopleInLine.remove();
+//
+//        System.out.println(peopleInLine);
+//
+//        peopleInLine.poll();
+//
+//        peopleInLine.poll();
+//        peopleInLine.poll();
+//        System.out.println(peopleInLine);
+        //Singly Linked List
 
-        names.addAll(uniqueNames);
-        System.out.println(names);
 
-        Set<String> common = new HashSet<>(uniqueNames);
-        common.retainAll(names);
-        System.out.println(common);
 
-        Set<String> difference = new HashSet<>(uniqueNames);
-        difference.removeAll(names);
-        System.out.println(difference);
+        //Doubly Linked List
+//        Queue<Integer> numberQueue = new PriorityQueue<>(Collections.reverseOrder());
+//
+//        numberQueue.add(3);
+//        numberQueue.add(2);
+//        numberQueue.add(6);
+//        numberQueue.add(9);
+//
+//        System.out.println(numberQueue);
+//        System.out.println(numberQueue.peek());
+//        System.out.println(numberQueue.element());
+ Map<String, Object> map = new HashMap<>();
 
-        Set<String> sortedSet = new TreeSet<>(uniqueNames);
-        System.out.println(sortedSet);
+    map.put("MSI Raider", new Computer(
+            "MSI",
+            "Raider",
+            2023,
+            16,
+            32,
+            "SSD",
+            1024));
+    map.put("Toyota Rav4", new Car(
+            "Toyota",
+            "Rav4",
+            "Purple",
+            7
+    ));
+    map.put("Computer Array", List.of(new Computer("MSI",
+            "Raider",
+            2023,
+            16,
+            32,
+            "SSD",
+            1024),
+            new Computer("MSI",
+                    "Raider",
+                    2023,
+                    16,
+                    32,
+                    "SSD",
+                    1024)));
+        map.put("Toyota Rav4", new Car(
+                "Toyota",
+                "Rav4",
+                "Black",
+                7
+        ));
 
-        Set<String> linkedHashSet = new LinkedHashSet<>();
+        System.out.println(map);
 
+        map.remove("MSI Raider");
+        System.out.println(map);
+
+        System.out.println(map.containsKey("Toyota Rav4"));
+
+        System.out.println(map.containsValue(new Car(
+                "Toyota",
+                "Rav4",
+                "Black",
+                7
+        )));
+
+        System.out.println(map.keySet());
+        System.out.println(map.values());
     }
 }
