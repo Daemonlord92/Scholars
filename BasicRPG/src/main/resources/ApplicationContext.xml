@@ -1,0 +1,15 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+    <bean name="database" class="database.DatabaseConnection"></bean>
+    <bean name="playerDao" class="database.PlayerDao">
+        <constructor-arg index="0" ref="database"></constructor-arg>
+        <constructor-arg index="1" ref="inventoryDao" />
+    </bean>
+    <bean name="inventoryDao" class="database.InventoryDao">
+        <constructor-arg index="0" ref="database"></constructor-arg>
+    </bean>
+</beans>
