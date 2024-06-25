@@ -3,15 +3,14 @@ package org.blitmatthew.database;
 import org.blitmatthew.general.player.PlayerCharacter;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class PlayerDao {
-
-    private DatabaseConnection databaseConnection;
     private InventoryDao inventoryDao;
 
-    public PlayerDao(DatabaseConnection databaseConnection, InventoryDao inventoryDao) {
-        this.databaseConnection = databaseConnection;
+    public PlayerDao(InventoryDao inventoryDao) {
         this.inventoryDao = inventoryDao;
     }
 
@@ -20,7 +19,7 @@ public class PlayerDao {
                 "dex_bonus, int_stat, int_bonus, chr_stat, chr_bonus, inventory_id)" +
                 "VALUE (?,?,?,?,?,?,?,?,?,?,?)";
         int invId = inventoryDao.save(playerCharacter.getInventory());
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)){
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
             System.out.println("Beginning to save the Character");
             statement.setString(1, playerCharacter.getName());
             statement.setString(2, playerCharacter.getCharacterRace().toString());
@@ -36,10 +35,18 @@ public class PlayerDao {
             int row = statement.executeUpdate();
             if(row > 0 ) {
                 System.out.println("Character Saved");
+                try(ResultSet resultSet = statement.getGeneratedKeys()) {
+                    while (resultSet.next()) {
+                        playerCharacter.setId(resultSet.getLong(1));
+                    }
+                    return playerCharacter;
+                }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return playerCharacter;
     }
+
 
 }

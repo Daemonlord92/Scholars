@@ -32,8 +32,12 @@ public class PlayerCharacter extends Sheet {
     @Override
     public String toString() {
         return "PlayerCharacter{" +
-                "name" + this.getName() +
-                "characterRace=" + characterRace +
+                " name= " + this.getName() +
+                ", characterRace= " + characterRace +
+                ", strStat= " + this.getStrStat() +
+                ", dexStat= " + this.getDexStat() +
+                ", intStat= " + this.getIntStat() +
+                ", chrStat= " + this.getChrStat() +
                 ", inventory=" + inventory +
                 '}';
     }

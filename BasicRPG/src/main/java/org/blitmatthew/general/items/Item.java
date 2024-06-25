@@ -1,6 +1,6 @@
 package org.blitmatthew.general.items;
 
-public abstract class Item {
+public class Item {
 
     private Long id;
     private String name;
