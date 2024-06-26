@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Inventory {
     private Long id;
-    private final List<Item> inventory;
+    private List<Item> inventory;
     private Integer gold;
 
     public Inventory() {
@@ -21,6 +21,10 @@ public class Inventory {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setInventory(List<Item> items) {
+        this.inventory = items;
     }
 
     public List<Item> getInventory() {

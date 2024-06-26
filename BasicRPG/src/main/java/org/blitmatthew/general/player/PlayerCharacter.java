@@ -7,6 +7,10 @@ public class PlayerCharacter extends Sheet {
     private Race characterRace;
     private Inventory inventory;
 
+    public PlayerCharacter() {
+        super();
+    }
+
     public PlayerCharacter(String name, Short strStat, Short dexStat, Short intStat, Short chrStat, Race characterRace) {
         super(name, strStat, dexStat, intStat, chrStat);
         this.characterRace = characterRace;
