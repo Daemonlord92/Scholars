@@ -3,7 +3,10 @@ package org.blitmatthew.general.player;
 import org.blitmatthew.general.Inventory;
 import org.blitmatthew.general.Sheet;
 
+import java.util.Random;
+
 public class PlayerCharacter extends Sheet {
+    private Integer hitPoints;
     private Race characterRace;
     private Inventory inventory;
 
@@ -15,6 +18,7 @@ public class PlayerCharacter extends Sheet {
         super(name, strStat, dexStat, intStat, chrStat);
         this.characterRace = characterRace;
         this.inventory = new Inventory();
+        this.hitPoints = this.getStrBonus() + new Random().nextInt(12) + 1;
     }
 
     public Race getCharacterRace() {
@@ -31,6 +35,14 @@ public class PlayerCharacter extends Sheet {
 
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
+    }
+
+    public Integer getHitPoints() {
+        return hitPoints;
+    }
+
+    public void setHitPoints(Integer hitPoints) {
+        this.hitPoints = hitPoints;
     }
 
     @Override

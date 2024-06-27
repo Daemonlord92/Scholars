@@ -40,4 +40,14 @@ public class Monster extends Sheet {
     public void setLocationId(Long locationId) {
         this.locationId = locationId;
     }
+
+    @Override
+    public String toString() {
+        return "Monster{" +
+                "name=" + this.getName() +
+                ", hitPoints=" + hitPoints +
+                ", damage=" + damage +
+                ", locationId=" + locationId +
+                '}';
+    }
 }

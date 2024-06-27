@@ -202,3 +202,5 @@ VALUES
 ('Fire Elemental', 12, 1, 14, 2, 18, 4, 10, 0, 18),
 ('Mountain Troll', 18, 4, 8, -1, 6, -2, 4, -3, 19),
 ('Shadow Demon', 14, 2, 18, 4, 16, 3, 12, 1, 20);
+
+ALTER TABLE player_character ADD COLUMN hit_point INT NOT NULL DEFAULT 10;

@@ -18,7 +18,7 @@ public class PlayerDao {
 
     public PlayerCharacter save(PlayerCharacter playerCharacter) {
         String sql = "INSERT INTO player_character(name, race, str_stat, str_bonus, dex_stat, " +
-                "dex_bonus, int_stat, int_bonus, chr_stat, chr_bonus, inventory_id)" +
+                "dex_bonus, int_stat, int_bonus, chr_stat, chr_bonus, inventory_id, hit_point)" +
                 "VALUE (?,?,?,?,?,?,?,?,?,?,?)";
         long invId = inventoryDao.save(playerCharacter.getInventory());
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
@@ -34,6 +34,7 @@ public class PlayerDao {
             statement.setInt(9, playerCharacter.getChrStat());
             statement.setInt(10, playerCharacter.getChrBonus());
             statement.setLong(11, invId);
+            statement.setInt(12, playerCharacter.getHitPoints());
             int row = statement.executeUpdate();
             if(row > 0 ) {
                 System.out.println("Character Saved");
@@ -71,6 +72,7 @@ public class PlayerDao {
                     playerCharacter.setChrStat(resultSet.getShort("chr_stat"));
                     playerCharacter.setChrBonus(resultSet.getShort("chr_bonus"));
                     playerCharacter.setInventory(inventoryDao.getInventoryOfPlayerCharacter(resultSet.getLong("inventory_id")));
+                    playerCharacter.setHitPoints(resultSet.getInt("hit_point"));
                 }
             }
         } catch (SQLException e) {

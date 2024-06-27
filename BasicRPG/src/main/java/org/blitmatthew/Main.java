@@ -1,11 +1,11 @@
 package org.blitmatthew;
 
-import org.blitmatthew.database.InventoryDao;
-import org.blitmatthew.database.ItemDao;
-import org.blitmatthew.database.PlayerDao;
+import org.blitmatthew.database.*;
 import org.blitmatthew.general.Inventory;
+import org.blitmatthew.general.Location;
 import org.blitmatthew.general.items.Item;
 import org.blitmatthew.general.items.Potion;
+import org.blitmatthew.general.monster.Monster;
 import org.blitmatthew.general.player.PlayerCharacter;
 import org.blitmatthew.general.player.Race;
 
@@ -45,5 +45,11 @@ public class Main {
         playerCharacter = playerDao.getPlayerCharacterByName("Zephyr");
 
         System.out.println(playerCharacter);
+        LocationDao locationDao = new LocationDao();
+        List<Location> locations = locationDao.getLocations();
+//        locations.forEach(System.out::println);
+        MonsterDao monsterDao = new MonsterDao();
+        List<Monster> monsters = monsterDao.getAllMonster();
+        monsters.forEach(System.out::println);
     }
 }
