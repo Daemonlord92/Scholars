@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Cyborgs</title>
+</head>
+<body>
+    <h1>Cyborg List</h1>
+    <div  th:each="cy: ${cyborgs}">
+        <ul>
+            <li>
+                <h3 th:text="${cy.getName()}"></h3>
+            </li>
+            <li>
+                <h4 th:text="${cy.getAlloy()}"></h4>
+            </li>
+            <li>
+                <h4 th:text="${cy.getSerialNumber()}"></h4>
+            </li>
+            <li>
+                <h4 th:text="${cy.getNoOfWeapons}"></h4>
+            </li>
+            <li>
+                <h4 th:text="${cy.getNoOfCpus()}"></h4>
+            </li>
+            <li>
+                <h4 th:text="${cy.getStorage()}"></h4>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
