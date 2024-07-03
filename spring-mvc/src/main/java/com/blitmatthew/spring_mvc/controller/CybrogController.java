@@ -1,19 +1,24 @@
 package com.blitmatthew.spring_mvc.controller;
 
 import com.blitmatthew.spring_mvc.models.Cybrog;
+import com.blitmatthew.spring_mvc.service.CybrogService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller //@RestController
 @Slf4j
 @RequestMapping("/cybrog")
+@RequiredArgsConstructor
 public class CybrogController {
+
+    private final CybrogService cybrogService;
 
     //@GetMapping("/")
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -23,28 +28,49 @@ public class CybrogController {
 
     @GetMapping("/all")
     public String displayListOfCybrog(Model model){
-        Cybrog cybrog = Cybrog.builder()
-                .name("Cybermen")
-                .alloy("Cyberium")
-                .serialNumber("hf9832f438fgo378fg2087f2f393t4")
-                .noOfWeapons(5)
-                .noOfCpus(320000)
-                .storage(320000)
-                .build();
-        Cybrog cybrog1 = Cybrog.builder()
-                .name("Dalek Khan")
-                .alloy("Dalekum")
-                .serialNumber("fh237fow8yg2487g348tg03784y278")
-                .noOfWeapons(5)
-                .noOfCpus(600000)
-                .storage(457357345)
-                .build();
-
-        List<Cybrog> cybrogs = List.of(cybrog, cybrog1);
+        List<Cybrog> cybrogs = cybrogService.getAllCybrogs();
         log.info(cybrogs.toString());
         model.addAttribute("cyborgs", cybrogs);
         log.info(model.toString());
         return "listOfCyborgs";
     }
 
+    @GetMapping("/add")
+    public String addCybrog(Model model) {
+        model.addAttribute("cybrog", new Cybrog());
+        return "addCybrog";
+    }
+
+    @PostMapping("/add")
+    public String addCybrog(@ModelAttribute("cybrog") @Valid Cybrog cybrog, Errors errors) {
+        if(errors.hasErrors()) {
+            return "addCybrog";
+        }
+        cybrogService.addCybrog(cybrog);
+        return "redirect:/cybrog/all";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editCybrog(@PathVariable Integer id, Model model) {
+        Cybrog cybrog = cybrogService.getCybrogById(id);
+        model.addAttribute("cybrog", cybrog);
+        return "editCybrog";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String updateCybrog(@PathVariable Integer id, @ModelAttribute("cybrog") @Valid Cybrog cybrog, Errors errors) {
+        log.info(cybrog.toString());
+        if (errors.hasErrors()){
+            return "editCybrog";
+        };
+
+        cybrogService.updateCubrog(cybrog);
+        return "redirect:/cybrog/all";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteCybrog(@PathVariable Integer id) {
+        cybrogService.deleteCybrog(id);
+        return "redirect:/cybrog/all";
+    }
 }

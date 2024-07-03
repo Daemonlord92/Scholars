@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Cybrog Creation</title>
+</head>
+<body>
+    <div>
+        <form method="post" th:object="${cybrog}" th:action="@{/cybrog/add}">
+            <label for="name">Name:</label>
+            <input id="name" type="text" placeholder="Name" th:field="${cybrog.name}"/>
+            <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+            <br>
+            <label for="alloy">Alloy:</label>
+            <input type="text" id="alloy" placeholder="Alloy" th:field="${cybrog.alloy}"/>
+            <div style="color: red" th:if="${#fields.hasErrors('alloy')}" th:errors="*{alloy}"></div>
+            <br>
+            <label for="serial-number">Serial Number:</label>
+            <input type="text" id="serial-number" placeholder="Serial Number" th:field="${cybrog.serialNumber}"/>
+            <div style="color: red" th:if="${#fields.hasErrors('serialNumber')}" th:errors="*{serialNumber}"></div>
+            <br>
+            <label for="no-of-weapons">Number of Weapon:</label>
+            <input type="number" id="no-of-weapons" placeholder="Number of Weapons" th:field="${cybrog.noOfWeapons}">
+            <br>
+            <label for="no-of-cpus">Number of CPUs:</label>
+            <input type="number" id="no-of-cpus" placeholder="Number of CPUs" th:field="${cybrog.noOfCpus}">
+            <div style="color: red" th:if="${#fields.hasErrors('noOfCpus')}" th:errors="*{noOfCpus}"></div>
+            <br>
+            <label for="storage">Storage:</label>
+            <input type="number" id="storage" placeholder="Storage" th:field="${cybrog.storage}">
+            <div style="color: red" th:if="${#fields.hasErrors('storage')}" th:errors="*{storage}"></div>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

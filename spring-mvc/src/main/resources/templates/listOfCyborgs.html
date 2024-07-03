@@ -26,6 +26,9 @@
             <li>
                 <h4 th:text="${cy.getStorage()}"></h4>
             </li>
+            <li>
+                <a th:href="@{'/cybrog/delete/' + ${cy.id}}">Delete</a>
+            </li>
         </ul>
     </div>
 </body>
