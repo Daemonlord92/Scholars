@@ -1,5 +1,6 @@
 package com.matthewblit.car_show.controller;
 
+import com.matthewblit.car_show.annotation.LogExecutionTime;
 import com.matthewblit.car_show.dto.CarDto;
 import com.matthewblit.car_show.entity.Car;
 import com.matthewblit.car_show.service.CarService;
@@ -18,6 +19,7 @@ public class CarController {
     private CarService carService;
 
     @PostMapping("/")
+    @LogExecutionTime
     public ResponseEntity<Car> postNewCar(@RequestBody CarDto carDto) {
         try{
             return ResponseEntity.ok(carService.createCar(carDto));
@@ -27,11 +29,13 @@ public class CarController {
     }
 
     @GetMapping("/")
+    @LogExecutionTime
     public ResponseEntity<List<Car>> getCars() {
         return ResponseEntity.ok(carService.getAllCars());
     }
 
     @GetMapping("/model/{model}")
+    @LogExecutionTime
     public ResponseEntity<Car> getCarByModel(@PathVariable String model) {
         return ResponseEntity.ok(carService.getCarByModel(model));
     }

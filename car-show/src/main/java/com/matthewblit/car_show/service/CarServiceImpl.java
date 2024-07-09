@@ -1,6 +1,7 @@
 package com.matthewblit.car_show.service;
 
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.matthewblit.car_show.annotation.LogExecutionTime;
 import com.matthewblit.car_show.dto.CarDto;
 import com.matthewblit.car_show.entity.Car;
 import com.matthewblit.car_show.repository.CarRepository;
@@ -24,6 +25,7 @@ public class CarServiceImpl implements CarService{
 //    }
 
     @Override
+    @LogExecutionTime
     public Car createCar(CarDto carDto) {
         Car car = Car.builder()
                 .make(carDto.make())
@@ -35,11 +37,13 @@ public class CarServiceImpl implements CarService{
     }
 
     @Override
+    @LogExecutionTime
     public List<Car> getAllCars() {
         return carRepository.findAll();
     }
 
     @Override
+    @LogExecutionTime
     public Car getCarByModel(String model) {
 
         return carRepository.findByModel(model)
