@@ -14,4 +14,5 @@ import java.util.Optional;
 
 public interface CarRepository extends ListCrudRepository<Car, Long> {
     List<Car> findByModelOrMake(String model, String make);
+    Optional<Car> findByModel(String model);
 }

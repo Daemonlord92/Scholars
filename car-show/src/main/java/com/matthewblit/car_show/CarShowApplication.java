@@ -56,5 +56,7 @@ public class CarShowApplication implements CommandLineRunner {
 		carRepository.saveAll(cars);
 
 		log.info(carRepository.findAll().toString());
+		//Shuts down the app since no Car in database with Toyota Model
+		//log.info(carService.getCarByModel("Toyota").toString());
 	}
 }

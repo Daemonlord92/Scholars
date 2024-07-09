@@ -4,10 +4,12 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.matthewblit.car_show.dto.CarDto;
 import com.matthewblit.car_show.entity.Car;
 import com.matthewblit.car_show.repository.CarRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -30,5 +32,17 @@ public class CarServiceImpl implements CarService{
                 .serial(UUID.randomUUID().toString())
                 .build();
         return carRepository.save(car);
+    }
+
+    @Override
+    public List<Car> getAllCars() {
+        return carRepository.findAll();
+    }
+
+    @Override
+    public Car getCarByModel(String model) {
+
+        return carRepository.findByModel(model)
+                .orElseThrow(() -> new EntityNotFoundException("Car with the model name " + model + " not found"));
     }
 }
