@@ -32,6 +32,8 @@ public class CarServiceImpl implements CarService{
                 .model(carDto.model())
                 .year(carDto.year())
                 .serial(UUID.randomUUID().toString())
+                .color(carDto.color())
+                .price(carDto.price())
                 .build();
         return carRepository.save(car);
     }

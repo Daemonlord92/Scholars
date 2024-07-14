@@ -20,4 +20,8 @@ public class Car {
     private String make;
     @Column(nullable = false)
     private Integer year;
+    @Column(nullable = false)
+    private Double price;
+    @Column(nullable = false)
+    private String color;
 }

@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/car_show
+    url: jdbc:mysql://localhost:3306/car_show?createDatabaseIfNotExist=true
     username: root
     password: Gudmord92!
     driver-class-name: com.mysql.cj.jdbc.Driver
