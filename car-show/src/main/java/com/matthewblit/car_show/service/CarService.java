@@ -9,4 +9,6 @@ public interface CarService {
     Car createCar(CarDto carDto);
     List<Car> getAllCars();
     Car getCarByModel(String model);
+
+    Car updateCar(Car car);
 }

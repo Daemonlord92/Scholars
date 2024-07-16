@@ -51,4 +51,17 @@ public class CarServiceImpl implements CarService{
         return carRepository.findByModel(model)
                 .orElseThrow(() -> new EntityNotFoundException("Car with the model name " + model + " not found"));
     }
+
+    @Override
+    public Car updateCar(Car car) {
+        if(car.getId() == null){
+            throw new IllegalArgumentException("Id not found");
+        }
+        Car oldData = carRepository.findById(car.getId())
+                .orElseThrow(() -> {
+                    throw new EntityNotFoundException("Car with id of " + car.getId() + " does not exist");
+                });
+        oldData = car;
+        return carRepository.save(oldData);
+    }
 }
