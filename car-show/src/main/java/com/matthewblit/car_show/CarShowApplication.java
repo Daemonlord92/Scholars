@@ -41,7 +41,7 @@ public class CarShowApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		CarDto carDto = new CarDto("600", "Lexus", 2024, "Black", 55000.00);
 		Car car = carService.createCar(carDto);
-		log.info(car.toString());
+		//log.info(car.toString());
 
 		List<Car> cars = List.of(
 				Car.builder()
@@ -64,7 +64,7 @@ public class CarShowApplication implements CommandLineRunner {
 
 		carRepository.saveAll(cars);
 
-		log.info(carRepository.findAll().toString());
+		//log.info(carRepository.findAll().toString());
 
 		Owner owner = Owner.builder()
 				.name("Jacob")

@@ -39,4 +39,9 @@ public class CarController {
     public ResponseEntity<Car> getCarByModel(@PathVariable String model) {
         return ResponseEntity.ok(carService.getCarByModel(model));
     }
+
+    @PutMapping("/")
+    public ResponseEntity<Car> updateCar(@RequestBody Car car) {
+        return ResponseEntity.ok(carService.updateCar(car));
+    }
 }
