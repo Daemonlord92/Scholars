@@ -9,6 +9,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -79,10 +81,11 @@ public class CarServiceTests {
         assertThat(throwable.getMessage()).isEqualTo("Id not found");
     }
 
-    @Test
-    public void updateCarShouldFailThrowExceptionInvalidId() {
+    @ParameterizedTest
+    @ValueSource(longs = {-42l, 0l, -15l, 500l})
+    public void updateCarShouldFailThrowExceptionInvalidId(long id) {
         Car car = Car.builder()
-                .id(-42l)
+                .id(id)
                 .make("Ford")
                 .model("F-150")
                 .serial(UUID.randomUUID().toString())
@@ -94,6 +97,7 @@ public class CarServiceTests {
         Throwable throwable = assertThrows(EntityNotFoundException.class, () -> carService.updateCar(car));
 
         assertThat(throwable).isInstanceOf(EntityNotFoundException.class);
-        assertThat(throwable.getMessage()).isEqualTo("Car with id of -42 does not exist");
+        assertThat(throwable.getMessage()).isEqualTo("Car with id of " + id + " does not exist");
     }
+
 }
