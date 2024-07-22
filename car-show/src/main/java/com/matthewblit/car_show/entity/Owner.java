@@ -4,11 +4,14 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Builder
 public class Owner {
     @Id
@@ -23,4 +26,7 @@ public class Owner {
     @Column(nullable = false)
     @Email
     private String email;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Car> cars;
 }

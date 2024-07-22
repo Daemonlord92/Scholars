@@ -1,6 +1,8 @@
 package com.matthewblit.car_show.config;
 
+import com.matthewblit.car_show.repository.UserCredentialRepository;
 import com.matthewblit.car_show.service.UserCredentialService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,11 +17,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class ApplicationConfig {
     @Autowired
-    private UserCredentialService userCredentialService;
+    private UserCredentialRepository userCredentialRepository;
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> userCredentialService.loadUserByUsername(username);
+        return username -> userCredentialRepository.findByUsername(username).orElseThrow(() -> {
+            throw new EntityNotFoundException("User doesn't exists");
+        });
     }
 
     @Bean

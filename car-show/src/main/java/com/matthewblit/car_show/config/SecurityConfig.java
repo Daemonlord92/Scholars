@@ -29,9 +29,10 @@ public class SecurityConfig {
         return httpSecurity
                 .csrf(c-> c.disable())
                 .cors(c-> c.configurationSource(corFilter()))
-                .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(c -> c
-                        .requestMatchers(HttpMethod.GET,"/api/v1/car/")
+                        .requestMatchers("/api/v1/auth/**", "/swagger-ui/**")
+                        .permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/v1/car/", "/api/v1/owner/")
                         .permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/v1/car/")
                         .hasRole("ADMIN")

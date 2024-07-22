@@ -5,11 +5,14 @@ import com.matthewblit.car_show.repository.UserCredentialRepository;
 import com.matthewblit.car_show.service.UserCredentialService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.AeadAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -25,7 +28,7 @@ public class JwtService {
     private JwtConfigProperty jwtConfigProperty;
 
     @Autowired
-    private UserCredentialService userCredentialService;
+    private UserDetailsService userCredentialService;
 
     public String generateToken(String username) {
         UserCredential userCredential = (UserCredential) userCredentialService.loadUserByUsername(username);
@@ -59,7 +62,7 @@ public class JwtService {
     private Claims extractAllClaims(String token) {
         return Jwts
                 .parser()
-                .decryptWith(getSecretKey())
+                .verifyWith(getSecretKey())
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();

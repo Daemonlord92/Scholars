@@ -1,5 +1,6 @@
 package com.matthewblit.car_show.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,4 +25,8 @@ public class Car {
     private Double price;
     @Column(nullable = false)
     private String color;
+
+    @ManyToOne
+    @JsonIgnore
+    private Owner owner;
 }

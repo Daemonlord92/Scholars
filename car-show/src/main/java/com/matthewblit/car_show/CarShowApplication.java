@@ -72,8 +72,23 @@ public class CarShowApplication implements CommandLineRunner {
 				.email("test@test.com")
 				.phone("9072728359")
 				.build();
-		ownerRepository.save(owner);
+		owner = ownerRepository.save(owner);
 		//Shuts down the app since no Car in database with Toyota Model
 		//log.info(carService.getCarByModel("Toyota").toString());
+
+		Car jacobCar1 = Car.builder()
+				.make("Ford")
+				.model("Mustang")
+				.year(1969)
+				.color("Black")
+				.serial(UUID.randomUUID().toString())
+				.price(35000.00)
+				.owner(owner)
+				.build();
+		owner.setCars(List.of(jacobCar1));
+		carRepository.save(jacobCar1);
+		ownerRepository.save(owner);
+//		log.info(carRepository.findAll().toString());
+//		log.info(ownerRepository.findAll().toString());
 	}
 }
