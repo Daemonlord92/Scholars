@@ -28,13 +28,15 @@ function CarIndex() {
     if(error) return <div>An error has occurred, Time to cry under the desk: {error.message}</div>
 
     return (
-        <div className="m-auto p-20 border-red-700 bg-white">
-            <h1 className="text-4xl">Current Car List</h1>
-            <div>
-                <button onClick={openCreate}>Create new car</button>
+        <div className="m-auto p-10 border-red-700 bg-white">
+            <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-800 to-red-300">Current Car List</h1>
+            <div className="flex flex-wrap my-3">
+                <div className="flex flex-row justify-end w-full my-3">
+                    <button onClick={openCreate} className="border-teal-500  rounded-md border-2 bg-cyan-400 p-1 hover:bg-cyan-700 hover:shadow-lg justify-end">Create new car</button>
+                </div>
                 <CreateCar isOpen={isCreateOpen} onClose={closeCreate} />
-                <table className="w-full">
-                    <thead>
+                <table className="w-full flex-row border border-double border-2 border-amber-500">
+                    <thead className="border border-dashed border-2 border-amber-400">
                         <tr className="">
                             <th>Make</th>
                             <th>Model</th>

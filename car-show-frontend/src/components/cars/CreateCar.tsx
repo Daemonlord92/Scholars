@@ -64,9 +64,12 @@ const CreateCar = ({isOpen, onClose}: {isOpen:boolean, onClose:()=>void}) => {
 
     return(
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
-            <div className="bg-white p-4 rounded-lg shadow-md w-1/3">
+            <div className="bg-white p-10 m-5 rounded-lg shadow-md w-2/4">
+                <div className="flex flex-row justify-end">
+                    <button onClick={onClose}>X</button>
+                </div>
                 <div className="flex justify-end">
-                    <form onSubmit={formik.handleSubmit} method="post">
+                    <form onSubmit={formik.handleSubmit} method="post" className="flex-row w-full">
                         <label htmlFor="make">Make:</label>
                         <input 
                         type="text"
@@ -123,7 +126,7 @@ const CreateCar = ({isOpen, onClose}: {isOpen:boolean, onClose:()=>void}) => {
                         {formik.touched.color && formik.errors.color ? (
                             <div className="text-red-500 text-sm">{formik.errors.color}</div>
                         ): null}
-                        <input type="submit" value="Submit Car" />
+                        <input type="submit" value="Submit Car" className="border-2 p-1 mt-5 border-teal-500 border-solid rounded-lg bg-slate-400 hover:bg-slate-600 hover:text-white" />
                     </form> 
                 </div>
             </div>
