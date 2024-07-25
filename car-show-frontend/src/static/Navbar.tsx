@@ -9,7 +9,7 @@ function Navbar() {
                 </div>
                 <div className="space-x-4">
                 <a href="/" className="text-gray-300 hover:text-white">Home</a>
-                <a href="/about" className="text-gray-300 hover:text-white">About</a>
+                <a href="/cars" className="text-gray-300 hover:text-white">Cars</a>
                 <a href="/services" className="text-gray-300 hover:text-white">Services</a>
                 <a href="/contact" className="text-gray-300 hover:text-white">Contact</a>
                 </div>
