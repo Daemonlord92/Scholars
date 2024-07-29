@@ -15,6 +15,7 @@ function CarIndex() {
         }
     })
     const [isCreateOpen, setCreateOpen] = useState(false);
+  
 
     const openCreate = () => {
         setCreateOpen(true)
