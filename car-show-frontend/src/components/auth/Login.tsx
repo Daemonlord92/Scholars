@@ -1,3 +1,4 @@
+import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
 import { useFormik } from "formik"
 import { useNavigate } from "react-router-dom"
@@ -13,18 +14,24 @@ const Login = () => {
         .required("Required")
     })
 
-    const postLogin = (values:any) => {
-        const request = axios.post(import.meta.env.VITE_API_URL + "/auth/login", values)
-        request.then(res => {
-            sessionStorage.setItem("Authorization", res.data)
+    const postLogin = async (values:any) => {
+        const request = await axios.post(import.meta.env.VITE_API_URL + "/auth/login", values)
+        const response = await request;
+        return response.data;
+    }
+
+    const mutation = useMutation({
+        mutationFn: postLogin,
+        onSuccess: (data) => {
+            sessionStorage.setItem("Authorization", data)
             alert("Login Successful")
+            window.dispatchEvent(new Event('authChange'));
             navigate("/cars")
-        }).catch(err =>{
+        },
+        onError: (error) => {
             alert("Login Unsucessful")
         }
-        )
-        
-    }
+    })
 
     const formik = useFormik({
         initialValues: {
@@ -32,7 +39,7 @@ const Login = () => {
             password: ''
         },
         validationSchema: LoginSchema,
-        onSubmit: (values) => postLogin(values)
+        onSubmit: (values) => mutation.mutate(values)
     })
     return (
         <div>

@@ -14,6 +14,9 @@ function CarIndex() {
             return response;
         }
     })
+
+    const isAuthorized = sessionStorage.getItem("Authorization")
+
     const [isCreateOpen, setCreateOpen] = useState(false);
   
 
@@ -32,9 +35,9 @@ function CarIndex() {
         <div className="m-auto p-10 border-red-700 bg-white">
             <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-800 to-red-300">Current Car List</h1>
             <div className="flex flex-wrap my-3">
-                <div className="flex flex-row justify-end w-full my-3">
+                {isAuthorized ? <div className="flex flex-row justify-end w-full my-3">
                     <button onClick={openCreate} className="border-teal-500  rounded-md border-2 bg-cyan-400 p-1 hover:bg-cyan-700 hover:shadow-lg justify-end">Create new car</button>
-                </div>
+                </div> : null}
                 <CreateCar isOpen={isCreateOpen} onClose={closeCreate} />
                 <table className="w-full flex-row border border-double border-2 border-amber-500">
                     <thead className="border border-dashed border-2 border-amber-400">

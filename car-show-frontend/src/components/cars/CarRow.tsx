@@ -5,7 +5,7 @@ import UpdateCar from "./UpdateCar";
 function CarRow({data}: {data:Car}) {
     const {id, make, model, color, price, year} = data;
     const [isUpdateOpen, setIsUpdateOpen] = useState(false)
-
+    const isAuthorized = sessionStorage.getItem("Authorization")
     const openUpdate = () => {
         setIsUpdateOpen(true);
     }
@@ -18,7 +18,7 @@ function CarRow({data}: {data:Car}) {
                 <td>{color}</td>
                 <td>${parseFloat(price).toFixed(2)}</td>
                 <td>{year}</td>
-                <td><button onClick={()=>openUpdate()} className="border-teal-500  rounded-md border-2 bg-cyan-400 p-1 hover:bg-cyan-700 hover:shadow-lg justify-end">Edit</button></td>
+                <td>{isAuthorized ? <button onClick={()=>openUpdate()} className="border-teal-500  rounded-md border-2 bg-cyan-400 p-1 hover:bg-cyan-700 hover:shadow-lg justify-end">Edit</button> : null}</td>
             </tr>
             <UpdateCar isUpdateOpen={isUpdateOpen} car={data} setIsUpdateOpen={setIsUpdateOpen} />
         </>
